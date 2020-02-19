@@ -1,0 +1,14 @@
+.is-form {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 25px;
+  height: 40px;
+  border-radius: 5px;
+  outline: 0;
+  border: 1px solid #bbb;
+  padding: 0 0 0 10px;
+  font-size: 14px;
+  &:focus {
+    border: 1px solid #3498db;
+  }
+}

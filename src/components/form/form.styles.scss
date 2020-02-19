@@ -1,0 +1,31 @@
+.form-wrap {
+  position: relative;
+  margin: 0 auto;
+  background: #ecf0f1;
+  width: 350px;
+  border-radius: 5px;
+  box-shadow: 3px 3px 10px #333;
+  padding: 15px;
+
+  .form {
+    padding-top: 20px;
+  }
+
+  h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 10px;
+    color: #34495e;
+  }
+
+  .form-link {
+    text-align: center;
+    font-size: 10px;
+    color: #3498db;
+
+    p{
+      padding-bottom: 10px;
+    }
+  }
+}

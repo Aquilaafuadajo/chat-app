@@ -1,0 +1,23 @@
+.custom-button {
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 25px;
+  height: 40px;
+  border-radius: 5px;
+  outline: 0;
+  background: #e74c3c;
+  border:none;
+  color: white;
+  font-size: 18px;
+  font-weight: 200;
+  cursor: pointer;
+  transition: box-shadow .4s ease;
+  
+  &:hover {
+    box-shadow: 1px 1px 5px #555;  
+  }
+    
+  &:active {
+      box-shadow: 1px 1px 7px #222;  
+  }
+}

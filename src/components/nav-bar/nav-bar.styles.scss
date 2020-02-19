@@ -1,0 +1,18 @@
+.main-nav {
+  width: 100%;
+  height:auto;
+  display: flex;
+  padding: 0 20px;
+  background-color: #4fa791;
+  box-shadow: 3px 5px 5px rgba(36, 34, 34, 0.438);
+
+  p {
+    padding: 0;
+    margin-left: auto;
+    align-self: center;
+
+    span {
+      padding-right: 10px;
+    }
+  }
+}
