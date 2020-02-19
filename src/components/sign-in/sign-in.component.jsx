@@ -26,7 +26,7 @@ class SignIn extends React.Component {
         username={username} 
         password={password} 
         handleChange={this.handleChange} 
-        handleSubmit={this.handleSubmit} 
+        handleSubmit={this.handleSubmit}
         isSignIn
         />
     )

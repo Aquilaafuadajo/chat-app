@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {signInWithGoogle} from '../../firebase/firebase.utils';
+
 import Form from '../form/form.component';
 
 class SignUp extends React.Component{
@@ -26,6 +28,7 @@ class SignUp extends React.Component{
       <Form 
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        signInWithGoogle={signInWithGoogle}
         username={username}
         email={email}
         password={password}

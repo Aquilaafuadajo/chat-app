@@ -1,14 +1,16 @@
 import React from 'react';
 
+import {auth} from '../../firebase/firebase.utils';
+
 import './nav-bar.styles.scss';
 
 
 
-const NavBar = () => {
+const NavBar = ({currentUser}) => {
   return (
     <nav className='main-nav'>
       <h1>HeaderIcon</h1>
-      <p><span>Profile</span> <span>Sign Out</span></p>
+      <p><span>Profile</span>{currentUser? <span onClick={ () => auth.signOut()}>Sign out</span> : ''} </p>
     </nav>
   )
 }
