@@ -54,6 +54,7 @@ class EditProfile extends React.Component {
 
   render() { 
     const {url} = this.state;
+    const {currentUser} = this.props;
     return ( 
         <div className='form-wrap' style={{textAlign: 'center'}}>
           <div className="edit">
@@ -61,17 +62,19 @@ class EditProfile extends React.Component {
           </div>
           <h3>Edit profile</h3>
           {
-            url? 
+            currentUser.photoURL? 
             <div className="pa2 tc">
-              <img src={url} className="br-100 h3 w3 dib" alt="avatar"/>
+              <img src={currentUser.photoURL} className="br-100 h3 w3 dib" alt="avatar"/>
             </div>
             :
             <div className="avatar">
               <img src={DefaultImage} className="br-100 h3 w3 dib" alt="avatar"/>
             </div>
           }
-          <CustomButton>Upload Image <img src={ComputingCloud} alt='upload' style={{height: '20px', width: '20px', marginLeft: '5px'}} /> </CustomButton>
-          <UploadButton handleChange={this.handleChange}/>
+          
+            <CustomButton>Upload Image <img src={ComputingCloud} alt='upload' style={{height: '20px', width: '20px', marginLeft: '5px'}} /> </CustomButton>
+            <UploadButton style={{color: 'blue', position: 'relative', top: '-42px', opacity: '0'}} handleChange={this.handleChange}/>
+          
           <FormInput type='text' name='name' placeholder='Name' />
           <FormInput type='text' name='about' placeholder='About' />
           <FormInput type='email' name='email' placeholder='Email' />
