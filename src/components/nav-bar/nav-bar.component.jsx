@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
 import {auth} from '../../firebase/firebase.utils';
 
@@ -6,7 +7,8 @@ import './nav-bar.styles.scss';
 
 
 
-const NavBar = ({currentUser}) => {
+const NavBar = (props) => {
+  const {currentUser} = props
   return (
     <nav className='main-nav'>
       <h1>HeaderIcon</h1>
@@ -15,4 +17,8 @@ const NavBar = ({currentUser}) => {
   )
 }
 
-export default NavBar;
+const mapStateToProps = ({ user: { currentUser } }) => ({
+  currentUser
+});
+
+export default connect(mapStateToProps)(NavBar);

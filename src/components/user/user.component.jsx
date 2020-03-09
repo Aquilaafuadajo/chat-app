@@ -1,18 +1,21 @@
 import React from 'react';
+import {createStructuredSelector} from 'reselect';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import Face from '../../assets/face.jpg';
 import Edit from '../../assets/edit.svg';
 import Bin from '../../assets/bin.svg';
 
 import 'tachyons';
 import './user.styles.scss';
+import { selectCurrentUser } from '../../redux/user/users.selectors';
 
-const User = () => {
+const User = ({currentUser}) => {
   return ( 
       <div className='container'>
         <div className='user'>
-          <div class="pa4 tc">
-            <img src={Face} className="br-100 h3 w3 dib" alt="avatar"/>
+          <div className="pa4 tc">
+            <img src={currentUser.photoUrl} className="br-100 h3 w3 dib" alt="avatar"/>
           </div>
           <div className='username'>
             <p>kathy</p>
@@ -20,11 +23,15 @@ const User = () => {
           </div>
         </div>
         <div className='changes'>
-          <img className='svg' src={Edit} alt='edit'/>
+          <Link to='edit-profile'><img className='svg' src={Edit} alt='edit'/></Link>
           <img className='svg' src={Bin} alt='delete'/>
         </div>
       </div>
     );
 }
 
-export default User;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser
+})
+
+export default connect(mapStateToProps)(User);
