@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
+import {firestore} from '../../firebase/firebase.utils';
 import {storage} from '../../firebase/firebase.utils';
 
 import {selectCurrentUser} from '../../redux/user/users.selectors';
+import {setCurrentUser} from '../../redux/user/user.action';
 
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
@@ -23,13 +25,12 @@ class EditProfile extends React.Component {
     }
 
   handleChange= async (e) => {
-    const {currentUser} = this.props
+    const {currentUser, setCurrentUser} = this.props
     const image = await e.target.files[0]
     if(image) {
       this.setState({image: image})
     }
     const uploadTask = storage.ref(`images/${currentUser.id}/${image.name}`).put(image)
-    // const getUrl = await storage.ref(`images/${currentUser.id}`).child(image.name).getDownloadURL()
 
       uploadTask.on('state_changed', 
       (snapshot) => {
@@ -40,7 +41,12 @@ class EditProfile extends React.Component {
       },
       () => {
         storage.ref(`images/${currentUser.id}`).child(image.name).getDownloadURL().then(url => {
-          this.setState({url: url}, console.log(this.state.url))
+          const userRef = firestore.doc(`users/${currentUser.id}`)
+          userRef.update({photoURL: url})
+          // setCurrentUser({
+          //   photoUrl: url
+          // })
+          this.setState({url: url})
         })
       }
     )
@@ -78,4 +84,8 @@ const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser
 })
 
-export default connect(mapStateToProps)(EditProfile);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

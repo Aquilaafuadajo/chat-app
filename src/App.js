@@ -29,7 +29,7 @@ class App extends React.Component {
 
         userRef.onSnapshot(snapShot => {
           setCurrentUser({
-              photoUrl: userAuth.photoURL,
+              // photoUrl: userAuth.photoURL,
               id: snapShot.id,
               ...snapShot.data()
           })

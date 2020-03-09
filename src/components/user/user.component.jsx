@@ -15,7 +15,7 @@ const User = ({currentUser}) => {
       <div className='container'>
         <div className='user'>
           <div className="pa4 tc">
-            <img src={currentUser.photoUrl} className="br-100 h3 w3 dib" alt="avatar"/>
+            <img src={currentUser.photoURL} className="br-100 h3 w3 dib" alt="avatar"/>
           </div>
           <div className='username'>
             <p>kathy</p>
