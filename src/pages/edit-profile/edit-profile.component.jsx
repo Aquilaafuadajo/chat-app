@@ -46,7 +46,7 @@ class EditProfile extends React.Component {
           // setCurrentUser({
           //   photoUrl: url
           // })
-          this.setState({url: url})
+          this.setState({url: currentUser.photoURL}, console.log(this.state.url))
         })
       }
     )
@@ -62,7 +62,7 @@ class EditProfile extends React.Component {
           </div>
           <h3>Edit profile</h3>
           {
-            currentUser.photoURL? 
+            currentUser? 
             <div className="pa2 tc">
               <img src={currentUser.photoURL} className="br-100 h3 w3 dib" alt="avatar"/>
             </div>
