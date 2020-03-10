@@ -63,7 +63,7 @@ class EditProfile extends React.Component {
           <h3>Edit profile</h3>
           {
             currentUser? 
-            <div className="pa2 tc">
+            <div className="pa2 tc"> 
               <img src={currentUser.photoURL} className="br-100 h3 w3 dib" alt="avatar"/>
             </div>
             :
