@@ -23,7 +23,7 @@ const User = ({currentUser}) => {
           </div>
         </div>
         <div className='changes'>
-          <Link to='edit-profile'><img className='svg' src={Edit} alt='edit'/></Link>
+          <Link to='edit-profile'><img style={{fill: '#4fa791'}} className='svg' src={Edit} alt='edit'/></Link>
           <img className='svg' src={Bin} alt='delete'/>
         </div>
       </div>

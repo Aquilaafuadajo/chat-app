@@ -14,7 +14,7 @@ const config = {
   measurementId: "G-E68NNBZN05"
 };
 
-firebase.initializeApp(config);
+firebase.initializeApp(config); 
 
 export const createProfileDocument = async (userAuth, additionalData) => {
   if(!userAuth) return
@@ -24,6 +24,7 @@ export const createProfileDocument = async (userAuth, additionalData) => {
 
   if(!snapShot.exists) {
     const {displayName, email, photoURL} = userAuth
+    const bio = ''
     const createdAt = new Date()
     try {
       await userRef.set({
@@ -31,6 +32,7 @@ export const createProfileDocument = async (userAuth, additionalData) => {
         email,
         createdAt,
         photoURL,
+        bio,
         ...additionalData
       })
     }catch(error) {console.log('error creating user', error.message)}

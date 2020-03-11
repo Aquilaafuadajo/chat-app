@@ -21,11 +21,12 @@ import './edit-profile.styles.scss';
 class EditProfile extends React.Component {
   state = { 
       image: null,
-      url: ''
+      username: '',
+      bio: ''
     }
 
   handleChange= async (e) => {
-    const {currentUser, setCurrentUser} = this.props
+    const {currentUser} = this.props
     const image = await e.target.files[0]
     if(image) {
       this.setState({image: image})
@@ -43,17 +44,32 @@ class EditProfile extends React.Component {
         storage.ref(`images/${currentUser.id}`).child(image.name).getDownloadURL().then(url => {
           const userRef = firestore.doc(`users/${currentUser.id}`)
           userRef.update({photoURL: url})
-          // setCurrentUser({
-          //   photoUrl: url
-          // })
           this.setState({url: currentUser.photoURL}, console.log(this.state.url))
         })
       }
     )
   }
 
+  handleTextInput = (e) => {
+    const {name, value} = e.target
+    this.setState({[name]: value})
+  }
+
+  handleSubmit = () => {
+    const {username, bio} = this.state;
+    const {currentUser} = this.props
+    const userRef = firestore.doc(`users/${currentUser.id}`)
+    userRef.update({
+      username,
+      bio
+    })
+    this.setState({
+      username: '',
+      bio: ''
+    })
+  }
+
   render() { 
-    const {url} = this.state;
     const {currentUser} = this.props;
     return ( 
         <div className='form-wrap' style={{textAlign: 'center'}}>
@@ -73,11 +89,11 @@ class EditProfile extends React.Component {
           }
           
             <CustomButton>Upload Image <img src={ComputingCloud} alt='upload' style={{height: '20px', width: '20px', marginLeft: '5px'}} /> </CustomButton>
-            <UploadButton style={{color: 'blue', position: 'relative', top: '-42px', opacity: '0'}} handleChange={this.handleChange}/>
+            <UploadButton style={{position: 'relative', top: '-42px', opacity: '0'}} handleChange={this.handleChange}/>
           
-          <FormInput type='text' name='name' placeholder='Name' />
-          <FormInput type='text' name='about' placeholder='About' />
-          <FormInput type='email' name='email' placeholder='Email' />
+          <FormInput type='text' name='username' placeholder='Name' onChange={this.handleTextInput} />
+          <FormInput type='text' name='bio' placeholder='Bio' onChange={this.handleTextInput} />
+          <CustomButton handleSubmit={this.handleSubmit} style={{backgroundColor: '#4fa791'}}>SAVE</CustomButton>
         </div>
       );
   }
